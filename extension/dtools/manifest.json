@@ -1,0 +1,34 @@
+{
+    "manifest_version": 2,
+    "name": "DTools",
+    "description": "Deriv Tools for tech team",
+    "version": "1.0",
+    "icons": {
+        "48": "assets/images/icon.png"
+    },
+    "browser_action": {
+     "default_icon": "assets/images/icon.png",
+     "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": ["assets/scripts/background.js"],
+        "persistent": true
+    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["assets/scripts/content.js"]
+      }],
+    "content_security_policy":  "script-src 'self' 'unsafe-eval'; object-src 'self'",
+    "permissions": [
+        "tabs",
+        "activeTab",
+        "http://*/*",
+        "https://*/*",
+        "chrome://favicon/",
+        "storage",
+        "webRequest", 
+        "ws://*/*", 
+        "wss://*/*",
+        "proxy"
+    ]
+  }
