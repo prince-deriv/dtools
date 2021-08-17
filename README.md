@@ -9,7 +9,7 @@ A simple google chrome extension made for Deriv FE Team for easier and faster de
 3. Select `Load Unpacked` and choose the downloaded/cloned repo.
 4. Pin the Extension and start using it.
 
-## Development
+## Local Development
 
 1. Fork [Dtools](https://github.com/prince-deriv/dtools-production)
 2. Run `npm install`
