@@ -1,15 +1,24 @@
-const env = "production";
+window.env = "production";
+const env_key = "dtools_env";
+const storage = chrome.storage.local;
 
 let script = null;
 
-window.onload = () => {
+// Environment handler
+storage.get(env_key, function (value) {
+  const val = value[env_key];
+
+  if (val != undefined) {
+    window.env = val;
+  }
+
   setInterval(() => fetchUpdate(), 3000);
-};
+});
 
 const fetchUpdate = () => {
   // Append Extension Renderer Script
   const url =
-    env == "local"
+    window.env == "local"
       ? "http://localhost:4444"
       : "https://prince-deriv.github.io/dtools-production";
   const time = Math.floor(new Date().getTime() / 1000);
