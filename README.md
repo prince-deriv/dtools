@@ -10,8 +10,10 @@ A simple google chrome extension made for Deriv FE Team for easier and faster de
 
 
 ## Development
-1. Run `npm run dev` to activate the local development
-2. In Dtools popup make a fast 10 clicks in 2 seconds to switch environment.
-3. Local Environment indicator will show up in the `Dtools` popup
-4. Local files are hosted in `http://localhost:4444/`
+1. Fork `https://github.com/prince-deriv/dtools-production`
+2. Run `npm install`
+3. Run `npm run dev` to activate the local development
+4. In Dtools popup make a fast 10 clicks in 2 seconds to switch environment.
+5. Local Environment indicator will show up in the `Dtools` popup
+6. Local files are hosted in `http://localhost:4444/`
 
