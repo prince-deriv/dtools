@@ -18,7 +18,6 @@ const setStorageValue = (key, value) => {
 
 let dev_clicks = 0;
 const renderActionHandler = () => {
-  setStorageValue(env_key, "local");
   document.body.addEventListener("click", function () {
     dev_clicks += 1;
 
