@@ -1,8 +1,24 @@
 window.env = "production";
 const env_key = "dtools_env";
+const feature_key = "dtools_feature_version";
+const has_update_key = "dtools_has_update";
 const storage = chrome.storage.local;
 
 let script = null;
+
+const setStorageValue = (key, value) => {
+  const obj = {};
+
+  obj[key] = value;
+
+  storage.set(obj);
+};
+
+const getFeatureVersion = (res) => {
+  const match = /(?<=feature_version=').+?(?=')/g.exec(res);
+
+  return match ? match[0] : null;
+};
 
 const fetchUpdate = () => {
   // Environment handler
@@ -26,6 +42,17 @@ const fetchUpdate = () => {
     xhr.onreadystatechange = function () {
       if (xhr.readyState == 4) {
         const response = xhr.responseText;
+
+        const feature_version = getFeatureVersion(response);
+
+        const old_feature_key = localStorage[feature_key];
+
+        if (old_feature_key != feature_version) {
+          localStorage[feature_key] = feature_version;
+          localStorage[has_update_key] = true;
+        }
+
+        setStorageValue(feature_key, feature_version);
 
         chrome.tabs.query(
           { currentWindow: true, active: true },
