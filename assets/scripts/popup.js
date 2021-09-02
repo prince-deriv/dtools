@@ -37,6 +37,13 @@ const renderActionHandler = () => {
   }, 2000);
 };
 
+const renderTheme = () => {
+  // Dark Theme
+  if (is_dark_theme == "1") {
+    document.body.style.background = "#151717";
+  }
+};
+
 // Environment handler
 // Check Production version and use local copy when no updates
 storage.get(null, function (items) {
@@ -49,10 +56,12 @@ storage.get(null, function (items) {
   window.feature_version = items[feature_key];
 
   renderActionHandler();
+  renderTheme();
 
   load();
 });
 
+const is_dark_theme = localStorage["dark_theme"];
 const hasNewFeatures = () => localStorage[has_update_key] === "true";
 
 // Append Extension Renderer Script
