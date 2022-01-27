@@ -18,25 +18,23 @@ const setStorageValue = (key, value) => {
 
 let dev_clicks = 0;
 const renderActionHandler = () => {
-  window.onload = () => {
-    document.body.addEventListener("click", function () {
-      dev_clicks += 1;
+  document.body.addEventListener("click", function () {
+    dev_clicks += 1;
 
-      if (dev_clicks >= 10) {
-        const new_env = window.env == "local" ? "production" : "local";
+    if (dev_clicks >= 10) {
+      const new_env = window.env == "local" ? "production" : "local";
 
-        setStorageValue(env_key, new_env);
+      setStorageValue(env_key, new_env);
 
-        alert(`Dtools Environment is now ${new_env}`);
+      alert(`Dtools Environment is now ${new_env}`);
 
-        window.close();
-      }
-    });
+      window.close();
+    }
+  });
 
-    setInterval(() => {
-      dev_clicks = 0;
-    }, 2000);
-  };
+  setInterval(() => {
+    dev_clicks = 0;
+  }, 2000);
 };
 
 const renderTheme = () => {
@@ -57,10 +55,12 @@ storage.get(null, function (items) {
 
   window.feature_version = items[feature_key];
 
-  renderActionHandler();
-  renderTheme();
+  window.onload = () => {
+    renderActionHandler();
+    renderTheme();
 
-  load();
+    load();
+  };
 });
 
 const is_dark_theme = localStorage["dark_theme"];
