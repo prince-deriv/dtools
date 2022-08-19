@@ -7,6 +7,7 @@ const has_update_key = "dtools_has_update";
 window.env = "production";
 window.is_offline = false;
 window.feature_version = null;
+window.is_loaded = false;
 
 const setStorageValue = (key, value) => {
   const obj = {};
@@ -66,8 +67,17 @@ storage.get(null, function (items) {
 const is_dark_theme = localStorage["dark_theme"];
 const hasNewFeatures = () => localStorage[has_update_key] === "true";
 
+// Unidentified Bug : Force Reload the app
+setTimeout(() => {
+  if (!window.is_loaded) {
+    location.reload();
+  }
+}, 5000);
+
 // Append Extension Renderer Script
 const load = () => {
+  window.is_loaded = true;
+
   const url =
     window.env == "local"
       ? "http://localhost:4444"
